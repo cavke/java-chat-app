@@ -1,0 +1,24 @@
+server:
+  servlet:
+    #context-path: /chatapp
+
+logging:
+  level:
+    cavke.chatapp: DEBUG
+
+spring:
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chatapp
+    username: root
+    password: fr00la
+
+  liquibase:
+    change-log: /db/changelog/changelog.xml
+    enabled: true
