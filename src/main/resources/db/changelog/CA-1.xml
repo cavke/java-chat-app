@@ -9,24 +9,83 @@
          http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="CA-1-1" author="cavke">
-        <createTable tableName="user">
+        <createTable tableName="ca_user">
             <column autoIncrement="true" name="id" type="BIGSERIAL">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="username" type="VARCHAR(50)">
+            <column name="username" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="VARCHAR(60)">
+            <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="enabled" type="BOOLEAN" defaultValue="true">
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="disabled" type="BOOLEAN" defaultValue="false">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="CA-1-2" author="cavke">
-        <addUniqueConstraint columnNames="username" constraintName="uniq_user_username" tableName="user"/>
+        <addUniqueConstraint columnNames="username" constraintName="UNIQ_USER_USERNAME" tableName="ca_user"/>
+    </changeSet>
+
+    <changeSet id="CA-1-3" author="cavke">
+        <createTable tableName="chat">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT">
+                <constraints foreignKeyName="FK_CHAT_CREATEDBY" referencedTableName="ca_user" referencedColumnNames="id" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CA-1-4" author="cavke">
+        <createTable tableName="chat_member">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="chat" type="BIGINT">
+                <constraints foreignKeyName="FK_CHAT_MEMBER_CHAT" referencedTableName="chat" referencedColumnNames="id" nullable="false"/>
+            </column>
+            <column name="user" type="BIGINT">
+                <constraints foreignKeyName="FK_CHAT_MEMBER_USER" referencedTableName="ca_user" referencedColumnNames="id" nullable="false"/>
+            </column>
+            <column name="date_from" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_to" type="DATE"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CA-1-5" author="cavke">
+        <createTable tableName="message">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="chat" type="BIGINT">
+                <constraints foreignKeyName="FK_MESSAGE_CHAT" referencedTableName="chat" referencedColumnNames="id" nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT">
+                <constraints foreignKeyName="FK_MESSAGE_CREATEDBY" referencedTableName="ca_user" referencedColumnNames="id" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(1024)"/>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

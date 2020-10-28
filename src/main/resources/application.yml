@@ -7,10 +7,14 @@ logging:
     cavke.chatapp: DEBUG
 
 spring:
+  main:
+    banner-mode: off
+
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+    show-sql: false
 
   datasource:
     hikari:
@@ -22,3 +26,4 @@ spring:
   liquibase:
     change-log: /db/changelog/changelog.xml
     enabled: true
+    drop-first: true
