@@ -1,10 +1,9 @@
 server:
-  servlet:
-    #context-path: /chatapp
+  port: 9090
 
 logging:
   level:
-    cavke.chatapp: DEBUG
+    cavke.chatapp: INFO
 
 spring:
   main:
@@ -19,9 +18,9 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/chatapp
-    username: root
-    password: fr00la
+    url: jdbc:mysql://localhost:3306/chatapp?useSSL=false&serverTimezone=Europe/Berlin
+    username: <mysql_username>
+    password: <mysql_password>
 
   liquibase:
     change-log: /db/changelog/changelog.xml

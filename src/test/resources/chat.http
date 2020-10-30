@@ -1,0 +1,29 @@
+### login, password is hashed with SHA256 (hex chars)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+}
+
+############# MESSAGES #############
+
+### get messages
+GET http://localhost:8080/api/messages
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbImFkbWluIiwidXJwX2FkbWluIl0sImlhdCI6MTUyNjY3NTIyOSwiZXhwIjoxNTI3MjgwMDI4fQ.ItpFW9VXJaz0G2ptzQ_SBY0DanhNdMCcE9rWCcoNGALW86PetMOLrrBGHrvvsR8d9M9mBcHRpeIe1H7Bgasbuw
+
+### get message by id
+GET http://localhost:8080/api/messages/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbImFkbWluIiwidXJwX2FkbWluIl0sImlhdCI6MTUyNjY3NTIyOSwiZXhwIjoxNTI3MjgwMDI4fQ.ItpFW9VXJaz0G2ptzQ_SBY0DanhNdMCcE9rWCcoNGALW86PetMOLrrBGHrvvsR8d9M9mBcHRpeIe1H7Bgasbuw
+
+### create new message
+POST http://localhost:8080/api/messages
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbImFkbWluIiwidXJwX2FkbWluIl0sImlhdCI6MTUyNjY3NTIyOSwiZXhwIjoxNTI3MjgwMDI4fQ.ItpFW9VXJaz0G2ptzQ_SBY0DanhNdMCcE9rWCcoNGALW86PetMOLrrBGHrvvsR8d9M9mBcHRpeIe1H7Bgasbuw
+Content-Type: application/json
+
+{
+  "createdBy": 1,
+  "chatId": 1,
+  "text": "blaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaablaaaaaaaa"
+}

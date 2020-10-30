@@ -5,8 +5,13 @@ with following methods:
 - /message 
 - /group
 
+Application is work in progress with following TODOs:
+- JWT authentication
+- user and chat CRUD implementation
+- configuration profiles
+
 Run it with:
 
 `./gradlew bootRun`
 
-Application exposes following REST URL: `http://localhost:8080/chatapp`
+Application exposes following REST URL: `http://localhost:9090/api`

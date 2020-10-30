@@ -25,6 +25,7 @@ public class MessageController {
 
     @GetMapping("/messages")
     public List<MessageEntity> getAllMessages() {
+        // TODO implement pagination
         return messageRepository.findAll();
     }
 
@@ -34,6 +35,9 @@ public class MessageController {
         UserEntity u = userRepository.findById(request.getCreatedBy()).orElseThrow(() -> new RuntimeException("Unknown user"));
         ChatEntity c = chatRepository.findById(request.getChatId()).orElseThrow(() -> new RuntimeException("Unknown chat"));
         MessageEntity message = new MessageEntity(c, u, new Timestamp(System.currentTimeMillis()), request.getText());
+        
         return messageRepository.save(message);
     }
+
+    // TODO implement other CRUD messages
 }
